@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burrimo - Find Your Perfect Burrito</title>
+    <link rel="icon" type="image/png" href="TopLogo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+                Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Hamburger Menu */
+        .menu-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            border: none;
+            padding: 8px;
+            transition: background 0.3s;
+        }
+
+        .menu-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #3EC6FF;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Side Menu */
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a2e 0%, #0a0a0a 100%);
+            padding: 80px 30px 30px;
+            transition: right 0.3s ease;
+            z-index: 999;
+            border-left: 1px solid rgba(62, 198, 255, 0.2);
+        }
+
+        .side-menu.active {
+            right: 0;
+        }
+
+        .side-menu h3 {
+            color: #3EC6FF;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(62, 198, 255, 0.3);
+        }
+
+        .side-menu a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 0;
+            font-size: 18px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: color 0.3s, padding-left 0.3s;
+        }
+
+        .side-menu a:hover {
+            color: #3EC6FF;
+            padding-left: 10px;
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 998;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Main Content */
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+        }
+
+        .logo {
+            max-width: 100%;
+            width: 450px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        .tagline {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-bottom: 40px;
+        }
+
+        /* App Store Button */
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #3EC6FF 0%, #9D4EDD 100%);
+            color: #fff;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(62, 198, 255, 0.3);
+        }
+
+        .store-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(62, 198, 255, 0.5);
+        }
+
+        .store-btn svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Footer */
+        footer {
+            position: fixed;
+            bottom: 20px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #3EC6FF;
+            text-decoration: none;
+        }
+
+        @media (max-width: 500px) {
+            .logo {
+                width: 300px;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            .store-btn {
+                padding: 14px 24px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hamburger Menu Button -->
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Side Menu -->
+    <nav class="side-menu">
+        <h3>Legal</h3>
+        <a href="terms.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" onclick="toggleMenu()"></div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <img src="TopLogo.png" alt="Burrimo Logo" class="logo">
+        
+        <p class="tagline">Discover, rate, and share the best burritos near you</p>
+
+        <!-- Google Play Store Button -->
+        <a href="https://play.google.com/store/apps/details?id=com.burrimo.app" class="store-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+            </svg>
+            Get it on Google Play
+        </a>
+    </main>
+
+    <footer>
+        © 2025 Burrimo LLC · <a href="mailto:support@burrimo.com">support@burrimo.com</a>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.menu-btn').classList.toggle('active');
+            document.querySelector('.side-menu').classList.toggle('active');
+            document.querySelector('.overlay').classList.toggle('active');
+        }
+
+        // Close menu on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelector('.menu-btn').classList.remove('active');
+                document.querySelector('.side-menu').classList.remove('active');
+                document.querySelector('.overlay').classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
