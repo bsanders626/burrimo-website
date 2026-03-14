@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burrimo</title>
+    <link rel="icon" type="image/png" href="https://burrimo-images-cdn.b-cdn.net/assets/TopLogo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #FF6B35;
+            --orange-hover: #e55a28;
+            --dark-bg: #0f1117;
+            --card-bg: #1a1d28;
+            --card-border: rgba(255, 107, 53, 0.08);
+            --text-primary: #f0f0f5;
+            --text-secondary: #8b8da0;
+            --text-muted: #5c5e70;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 52px 40px 40px;
+            max-width: 460px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.02);
+            animation: cardIn 0.5s ease-out both;
+        }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.97); }
+            to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 32px;
+            filter: drop-shadow(0 4px 20px rgba(255,107,53,0.15));
+            animation: logoIn 0.6s ease-out 0.15s both;
+        }
+
+        @keyframes logoIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+
+        .icon {
+            font-size: 44px;
+            margin-bottom: 20px;
+            line-height: 1;
+        }
+
+        h1 {
+            font-size: 21px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+
+        .subtitle {
+            font-size: 14.5px;
+            font-weight: 300;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 32px;
+        }
+
+        .steps {
+            text-align: left;
+            margin: 0 auto 32px;
+            max-width: 340px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+
+        .step:last-child { margin-bottom: 0; }
+
+        .step-num {
+            background: var(--orange);
+            color: #fff;
+            font-weight: 700;
+            font-size: 13px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+
+        .step-text {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .step-text strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .cta-btn {
+            display: none;
+            background: var(--orange);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 14px 36px;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 24px;
+            transition: background 0.2s, transform 0.15s;
+            letter-spacing: 0.01em;
+        }
+
+        .cta-btn:hover { background: var(--orange-hover); transform: translateY(-1px); }
+        .cta-btn:active { transform: translateY(0); }
+
+        .desktop-content { display: block; }
+        .mobile-content  { display: none; }
+
+        @media (max-width: 600px) {
+            .card { padding: 40px 28px 32px; border-radius: 20px; }
+            .cta-btn { display: inline-block; }
+            .desktop-content { display: none; }
+            .mobile-content  { display: block; }
+        }
+
+        .divider {
+            height: 1px;
+            background: rgba(255,255,255,0.05);
+            margin: 28px 0 20px;
+        }
+
+        .help {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .help a {
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .help a:hover { text-decoration: underline; }
+
+        .home-link {
+            display: inline-block;
+            background: var(--orange);
+            color: #fff;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 12px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .home-link:hover { background: var(--orange-hover); }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <img src="/TopLogo.png" alt="Burrimo" class="logo" />
+  
+    <!-- ===== VERIFY EMAIL ===== -->
+    <div id="verify-section" style="display:none;">
+        <div class="desktop-content">
+            <div class="icon">📱</div>
+            <h1>Open This Link on Your Phone</h1>
+            <p class="subtitle">
+                This verification link needs to be opened on the phone where you have the Burrimo app installed.
+            </p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Open this email <strong>on your phone</strong></div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Tap the <strong>Verify Email</strong> button from there</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">Burrimo will open and your account will be verified</div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-content">
+            <div class="icon">✅</div>
+            <h1>Verify Your Burrimo Account</h1>
+            <p class="subtitle">Tap the button below to verify your email and finish setting up your account.</p>
+            <a id="verify-btn" class="cta-btn" href="#">Open Burrimo</a>
+        </div>
+    </div>
+
+    <!-- ===== RESET PASSWORD ===== -->
+    <div id="reset-section" style="display:none;">
+        <div class="desktop-content">
+            <div class="icon">📱</div>
+            <h1>Open This Link on Your Phone</h1>
+            <p class="subtitle">
+                This password reset link needs to be opened on the phone where you have the Burrimo app installed.
+            </p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-text">Open this email <strong>on your phone</strong></div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-text">Tap the <strong>Reset Password</strong> button from there</div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-text">Burrimo will open and you can set a new password</div>
+                </div>
+            </div>
+        </div>
+        <div class="mobile-content">
+            <div class="icon">🔑</div>
+            <h1>Reset Your Password</h1>
+            <p class="subtitle">Tap the button below to open Burrimo and set a new password.</p>
+            <a id="reset-btn" class="cta-btn" href="#">Open Burrimo</a>
+        </div>
+    </div>
+
+    <!-- ===== GENERIC 404 ===== -->
+    <div id="notfound-section" style="display:none;">
+        <div class="icon">🌯</div>
+        <h1>Page Not Found</h1>
+        <p class="subtitle">This page doesn't exist. Looking for the Burrimo app?</p>
+        <a class="home-link" href="https://www.burrimo.com">Go to burrimo.com</a>
+    </div>
+
+    <div class="divider"></div>
+    <p class="help">
+        Having trouble? Contact <a href="mailto:support@burrimo.com">support@burrimo.com</a>
+    </p>
+</div>
+
+<script>
+(function() {
+    var path = window.location.pathname;
+    var parts = path.split('/').filter(function(p) { return p.length > 0; });
+
+    var routeType = null;
+    var token = null;
+
+    if (parts.length >= 2 && parts[0] === 'verify') {
+        routeType = 'verify';
+        token = parts[1];
+    } else if (parts.length >= 2 && parts[0] === 'reset') {
+        routeType = 'reset';
+        token = parts[1];
+    }
+
+    if (routeType === 'verify' && token) {
+        document.getElementById('verify-section').style.display = 'block';
+        var deepLink = 'burrimo://verify-email/' + token;
+        var btn = document.getElementById('verify-btn');
+        if (btn) btn.href = deepLink;
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            window.location.href = deepLink;
+        }
+    } else if (routeType === 'reset' && token) {
+        document.getElementById('reset-section').style.display = 'block';
+        var deepLink = 'burrimo://reset-password/' + token;
+        var btn = document.getElementById('reset-btn');
+        if (btn) btn.href = deepLink;
+        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+            window.location.href = deepLink;
+        }
+    } else {
+        document.getElementById('notfound-section').style.display = 'block';
+    }
+})();
+</script>
+
+</body>
+</html>
