@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "G7CDV9XB46.com.burrimo.burrimo",
+        "paths": ["/verify", "/reset-password", "/app/*"]
+      }
+    ]
+  }
+}
