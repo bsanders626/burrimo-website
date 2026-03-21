@@ -156,13 +156,13 @@
         .store-btn {
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: linear-gradient(135deg, #3EC6FF 0%, #9D4EDD 100%);
             color: #fff;
             text-decoration: none;
-            padding: 16px 32px;
+            padding: 12px 22px;
             border-radius: 12px;
-            font-size: 1.1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             transition: transform 0.3s, box-shadow 0.3s;
             box-shadow: 0 4px 20px rgba(62, 198, 255, 0.3);
@@ -180,12 +180,21 @@
 
         .apple-btn {
     display: inline-block;
-    margin-top: 16px;
+    margin-top: 0;
 }
 
 .apple-btn img {
-    height: 70px;
+    height: 48px;
     width: auto;
+}
+
+        .button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+    flex-wrap: wrap;
 }
 
         /* Footer */
@@ -241,7 +250,10 @@
         
         <p class="tagline">Discover, rate, and share the best burritos near you</p>
 
-        <!-- Google Play Store Button -->
+       <!-- Download Buttons -->
+<div class="button-row">
+
+    <!-- Google Play -->
     <a href="https://play.google.com/store/apps/details?id=com.burrimo.android"
        class="store-btn"
        target="_blank"
@@ -252,14 +264,16 @@
         Get it on Google Play
     </a>
 
-        <!-- Apple App Store Button -->
-<a href="https://apps.apple.com/us/app/burrimo/id6760232539"
-   class="apple-btn"
-   target="_blank"
-   rel="noopener noreferrer">
-    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" 
-         alt="Download on the App Store">
-</a>
+    <!-- Apple -->
+    <a href="https://apps.apple.com/us/app/burrimo/id6760232539"
+       class="apple-btn"
+       target="_blank"
+       rel="noopener noreferrer">
+        <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+             alt="Download on the App Store">
+    </a>
+
+</div>
 
     </main>
 
