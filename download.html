@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Download Burrimo</title>
+
+  <!-- Apple Smart Banner (optional but nice) -->
+  <meta name="apple-itunes-app" content="app-id=6760232539" />
+
+  <script>
+    window.onload = function () {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+      const iosLink = "https://apps.apple.com/us/app/burrimo/id6760232539";
+      const androidLink = "https://play.google.com/store/apps/details?id=com.burrimo.android";
+      const fallbackLink = "https://burrimo.com";
+
+      if (/android/i.test(ua)) {
+        window.location.replace(androidLink);
+      } else if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) {
+        window.location.replace(iosLink);
+      } else {
+        window.location.replace(fallbackLink);
+      }
+    };
+  </script>
+</head>
+
+<body>
+  <h1>Redirecting you to Burrimo...</h1>
+  <p>If nothing happens, choose your platform:</p>
+
+  <p><a href="https://apps.apple.com/us/app/burrimo/id6760232539">Download on iPhone</a></p>
+  <p><a href="https://play.google.com/store/apps/details?id=com.burrimo.android">Download on Android</a></p>
+</body>
+</html>
